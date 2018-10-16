@@ -1,34 +1,26 @@
-#coding:utf-8
-import park
-import sys
+#-*-coding:utf-8-*-
+from driver import Driver
+from car import Car
+from stop import Stop
+from parking_record import ParkingRecord
+from order import Order
+from stop_place import StopPlace
+import datetime
 import time
 
-class Main(object):
+car1 = Car('辽A666','小型轿车','白色','车牌为蓝色','福特—福睿斯')
+driver1 =  Driver('9527','鸡小萌','1381111111',car1.car_logo)
+parkingrecord1 = ParkingRecord('9527','辽A666')
+stopplace1 = StopPlace('9527','辽A666')
+order = Order('1','50','支付宝','未支付','鸡小萌','福特—福睿斯','',"未完成")
 
-    def main():
-        parking = park.Park()
-        while True:
-            index = input("欢迎来到使用停车场系统：\n"
-            + "-----------------------\n"
-            + "键入对应数字执行操作：\n"
-            + "【1】: 驶入停车场\n"
-            + "【2】: 开始购物(目前设定购物5秒)\n"
-            + "【3】: 驶入停车场，并缴费\n"
-            + "【0】: 退出程序\n"
-            + "-----------------------\n")
-            if int(index) == 1:
-                parking.start()
-            elif int(index) == 2:
-                parking.shopping()
-                time.sleep(5)
-            elif int(index) == 3:
-                parking.end()
-                parking.money()
-            elif int(index) == 0:
-                sys.exit(0)
-            else:
-                print("键入正确的功能数字！")
-        
-        
-    if __name__ == '__main__':
-        main()
+car1.car_message()
+driver1.driver_car()
+parkingrecord1.start()
+stopplace1.place_stop_time()
+driver1.driver_shopping()
+time.sleep(5)
+driver1.driver_shopped()
+stopplace1.place_go_time()
+parkingrecord1.end()
+order.pay()
